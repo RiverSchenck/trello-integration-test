@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export const FinderApp = () => {
-  const [urlType, setUrlType] = useState<"previewUrl" | "dynamicUrl">(
-    "previewUrl"
-  );
+  const [urlType, setUrlType] = useState<"previewUrl" | "dynamicUrl">("previewUrl");
 
   useEffect(() => {
     const run = async () => {
@@ -53,28 +51,46 @@ export const FinderApp = () => {
         fontFamily: "Inter, sans-serif",
         color: "#1f2937",
         height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        overflow: "auto",
       }}
     >
+      <div
+        id="finderContainer"
+        style={{
+          height: "800px",
+          width: "1200px",
+          backgroundColor: "#fff",
+          borderRadius: "12px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+          marginBottom: "32px",
+        }}
+      />
+
       <div
         style={{
           backgroundColor: "#fff",
           borderRadius: "12px",
           boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
-          padding: "20px",
-          maxWidth: "600px",
-          marginBottom: "24px",
+          padding: "20px 28px",
+          width: "fit-content",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <label
           style={{
-            display: "block",
-            marginBottom: "10px",
             fontWeight: 600,
             fontSize: "16px",
+            marginBottom: "12px",
           }}
         >
           Choose URL Type
         </label>
+
         <div style={{ display: "flex", gap: "16px" }}>
           {[
             { value: "previewUrl", label: "Preview URL" },
@@ -88,14 +104,15 @@ export const FinderApp = () => {
                 gap: "8px",
                 cursor: "pointer",
                 backgroundColor:
-                  urlType === value ? "#f3f4f6" : "transparent",
-                padding: "10px 14px",
+                  urlType === value ? "#eff6ff" : "transparent",
+                padding: "10px 16px",
                 borderRadius: "8px",
-                transition: "all 0.2s",
                 border:
                   urlType === value
                     ? "2px solid #2563eb"
                     : "1px solid #d1d5db",
+                transition: "all 0.2s ease",
+                fontWeight: 500,
               }}
             >
               <input
@@ -106,21 +123,17 @@ export const FinderApp = () => {
                 onChange={(e) =>
                   setUrlType(e.target.value as "previewUrl" | "dynamicUrl")
                 }
-                style={{ accentColor: "#2563eb", transform: "scale(1.2)" }}
+                style={{
+                  accentColor: "#2563eb",
+                  transform: "scale(1.2)",
+                  marginRight: "6px",
+                }}
               />
               {label}
             </label>
           ))}
         </div>
       </div>
-
-      <div
-        id="finderContainer"
-        style={{
-          height: "800px",
-          width: "1200px",
-        }}
-      />
     </div>
   );
 };
