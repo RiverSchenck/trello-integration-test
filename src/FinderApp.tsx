@@ -20,8 +20,8 @@ export const FinderApp = () => {
         if (selected) {
           const url =
             urlType === "previewUrl"
-              ? selected.previewUrl || selected.cdn
-              : selected.dynamicUrl || selected.cdn;
+              ? selected.previewUrl
+              : selected.dynamicUrl;
 
           await t.attach({
             url,
